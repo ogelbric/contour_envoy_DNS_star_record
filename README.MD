@@ -204,6 +204,30 @@ mutatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook c
 validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook created
 ```
 
+## namespace
+```
+[root@orfdns tkg-extensions-v1.3.1+vmware.1]# cd extensions/ingress/contour
+[root@orfdns contour]# kubectl apply -f namespace-role.yaml
+namespace/tanzu-system-ingress created
+serviceaccount/contour-extension-sa created
+role.rbac.authorization.k8s.io/contour-extension-role created
+rolebinding.rbac.authorization.k8s.io/contour-extension-rolebinding created
+clusterrole.rbac.authorization.k8s.io/contour-extension-cluster-role created
+clusterrolebinding.rbac.authorization.k8s.io/contour-extension-cluster-rolebinding created
+[root@orfdns contour]# 
+[root@orfdns contour]# k get ns
+NAME                           STATUS   AGE
+cert-manager                   Active   11m
+default                        Active   37m
+kube-node-lease                Active   37m
+kube-public                    Active   37m
+kube-system                    Active   37m
+tanzu-system-ingress           Active   78s
+tkg-system                     Active   12m
+vmware-system-auth             Active   37m
+vmware-system-cloud-provider   Active   37m
+vmware-system-csi              Active   37m
+```
 
 
 
