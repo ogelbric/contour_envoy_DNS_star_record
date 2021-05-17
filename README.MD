@@ -266,6 +266,34 @@ tanzu-system-ingress   envoy                    LoadBalancer   198.51.100.151   
 
 ![dns_start_record](https://github.com/ogelbric/contour_envoy_DNS_star_record/blob/main/dns_star_record.png)
 
+## Deploy test namespace
+```
+[root@orfdns envoy_contour]# k apply -f ./myapp-ingress-namespace.yaml
+namespace/myapp created
+[root@orfdns envoy_contour]# cat myapp-ingress-namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2021-05-14T14:33:04Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:phase: {}
+    manager: kubectl
+    operation: Update
+    time: "2021-05-14T14:33:04Z"
+  name: myapp
+  resourceVersion: "1059400"
+  selfLink: /api/v1/namespaces/my-ingress-app
+  uid: d33a1558-2bbd-4cff-aab9-1180e84c04ed
+spec:
+  finalizers:
+  - kubernetes
+status:
+```
+
 
 
 
