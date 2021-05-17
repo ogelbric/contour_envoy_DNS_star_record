@@ -256,6 +256,13 @@ envoy-d44kw               2/2     Running   0          97s
 envoy-lppjw               2/2     Running   0          97s
 ```
 
+## Check the ingress
+```
+[root@orfdns contour]# k get svc -A | grep ingress
+tanzu-system-ingress   contour                  ClusterIP      198.51.100.113   <none>         8001/TCP                     7m17s
+tanzu-system-ingress   envoy                    LoadBalancer   198.51.100.151   192.168.5.44   80:30533/TCP,443:30113/TCP   7m17s
+[root@orfdns contour]# 
+```
 
 
 
