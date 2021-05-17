@@ -372,11 +372,31 @@ spec:
     spec:
       containers:
       - name: pacman
-        image: gcr.io/boreal-rain-256712/nginx
+        image: gcr.io/boreal-rain-xxxxxx/nginx #replace with nginx from docker or your own repo
         ports:
         - containerPort: 80
  ```
  
+ ## Test the app
+ ```
+ [root@orfdns envoy_contour]# curl pacman.apps.lab.local
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+
+```
+
 
 
 
