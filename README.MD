@@ -77,6 +77,44 @@ Download:  https://www.vmware.com/go/get-tkg
 [root@orfdns tkg-extensions-v1.3.1+vmware.1]# 
 ```
 
+## log onto the new cluster
+```
+[root@orfdns tkg-extensions-v1.3.1+vmware.1]# alias l2540
+alias l2540='kubectl vsphere login --server 192.168.5.40 \
+                --vsphere-username administrator@vsphere.local \
+                --managed-cluster-namespace namespace1000 \
+                --managed-cluster-name tkg-berlin \
+                --insecure-skip-tls-verify'
+[root@orfdns tkg-extensions-v1.3.1+vmware.1]# alias l2540paris
+alias l2540paris='kubectl vsphere login --server 192.168.5.40 \
+                --vsphere-username administrator@vsphere.local \
+                --managed-cluster-namespace namespace1000 \
+                --managed-cluster-name tkg-paris \
+                --insecure-skip-tls-verify'
+[root@orfdns tkg-extensions-v1.3.1+vmware.1]# l2540paris
+
+Password: 
+Logged in successfully.
+
+You have access to the following contexts:
+   192.168.5.40
+   namespace1000
+   tkg-berlin
+   tkg-paris
+
+If the context you wish to use is not in this list, you may need to try
+logging in again later, or contact your cluster administrator.
+
+To change context, use `kubectl config use-context <workload name>`
+[root@orfdns tkg-extensions-v1.3.1+vmware.1]# kubectl config use-context tkg-paris
+Switched to context "tkg-paris".
+[root@orfdns tkg-extensions-v1.3.1+vmware.1]# k get nodes
+NAME                                       STATUS   ROLES                  AGE   VERSION
+tkg-paris-control-plane-2hv5b              Ready    control-plane,master   15m   v1.20.2+vmware.1
+tkg-paris-workers-5z2vw-5ccdc7d4cb-594n5   Ready    <none>                 11m   v1.20.2+vmware.1
+tkg-paris-workers-5z2vw-5ccdc7d4cb-qzv8j   Ready    <none>                 11m   v1.20.2+vmware.1
+```
+
 
 
 
