@@ -56,3 +56,28 @@ tkg-paris    1               2        v1.20.2+vmware.1-tkg.2.3e10706    3m56s   
 [root@orfdns 7u2a]# 
 ```
  
+## Create directory and copy downloaded extentions
+```
+Download:  https://www.vmware.com/go/get-tkg
+		tkg-extensions-manifests-v1.3.1-vmware.1.tar.gz
+```
+
+```
+[root@orfdns ~]# mkdir envoy_contour
+[root@orfdns ~]# cp /tmp/tkg-extensions-manifests-v1.3.1-vmware.1.tar.gz envoy_contour/.
+[root@orfdns ~]#
+```
+
+
+
+
+
+
+
+
+
+
+## Reference documentation
+```
+Doc: https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-FA305850-ED37-48C6-99E9-5B6996376F0E.html
+```
