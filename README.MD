@@ -227,6 +227,9 @@ tkg-system                     Active   12m
 vmware-system-auth             Active   37m
 vmware-system-cloud-provider   Active   37m
 vmware-system-csi              Active   37m
+
+cp vsphere/contour-data-values-lb.yaml.example vsphere/contour-data-values.yaml
+
 ```
 
 
