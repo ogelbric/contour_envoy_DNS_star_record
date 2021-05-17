@@ -503,6 +503,10 @@ spec:
 ```
 
 
+![test_app2](https://github.com/ogelbric/contour_envoy_DNS_star_record/blob/main/test_app2.png)
+
+
+
 ## Reference documentation
 ```
 Doc: https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-FA305850-ED37-48C6-99E9-5B6996376F0E.html
