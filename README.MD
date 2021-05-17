@@ -227,9 +227,24 @@ tkg-system                     Active   12m
 vmware-system-auth             Active   37m
 vmware-system-cloud-provider   Active   37m
 vmware-system-csi              Active   37m
-
-cp vsphere/contour-data-values-lb.yaml.example vsphere/contour-data-values.yaml
-
+```
+## Contour
+```
+[root@orfdns contour]# cp vsphere/contour-data-values-lb.yaml.example vsphere/contour-data-values.yaml
+[root@orfdns contour]# kubectl create secret generic contour-data-values --from-file=values.yaml=vsphere/contour-data-values.yaml -n tanzu-system-ingress
+secret/contour-data-values created
+[root@orfdns contour]# k get secrets -A | grep ingress
+tanzu-system-ingress           contour-data-values                              Opaque                                1      2s
+tanzu-system-ingress           contour-extension-sa-token-jfqhp                 kubernetes.io/service-account-token   3      2m58s
+tanzu-system-ingress           default-token-v9gfd                              kubernetes.io/service-account-token   3      2m58s
+[root@orfdns contour]# kubectl apply -f contour-extension.yaml
+app.kappctrl.k14s.io/contour created
+[root@orfdns contour]# k get pods -n tanzu-system-ingress
+NAME                      READY   STATUS              RESTARTS   AGE
+contour-85b79dfff-jbj8k   0/1     ContainerCreating   0          8s
+contour-85b79dfff-vqrrr   0/1     ContainerCreating   0          7s
+envoy-d44kw               0/2     Init:0/1            0          8s
+envoy-lppjw               0/2     Init:0/1            0          8s
 ```
 
 
