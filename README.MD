@@ -401,7 +401,106 @@ spec:
 ![test_app](https://github.com/ogelbric/contour_envoy_DNS_star_record/blob/main/test_app.png)
 
 
-
+## Deploy test app number 2
+```
+[root@orfdns envoy_contour]# k apply -f ./newapp.yaml 
+deployment.apps/pacwoman created
+service/pacwoman created
+ingress.networking.k8s.io/pacwoman created
+[root@orfdns envoy_contour]# k get ingress -n myapp
+NAME       CLASS    HOSTS                      ADDRESS        PORTS   AGE
+pacman     <none>   pacman.apps.lab.local      192.168.5.44   80      20m
+pacwoman   <none>   pacwoman2.apps.lab.local   192.168.5.44   80      8s
+[root@orfdns envoy_contour]# cat newapp.yaml 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    name: pacwoman
+  name: pacwoman
+  namespace: myapp
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      name: pacwoman
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        name: pacwoman
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: beta.kubernetes.io/os
+                operator: In
+                values:
+                - linux
+      containers:
+      - image: gcr.io/boreal-rain-256712/nginx
+        imagePullPolicy: IfNotPresent
+        name: pacwoman
+        ports:
+        - containerPort: 80
+          name: http-server
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: pacwoman
+  name: pacwoman
+  namespace: myapp
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    name: pacwoman
+  sessionAffinity: None
+  type: ClusterIP
+status:
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pacwoman
+  namespace: myapp
+spec:
+  rules:
+  - host: pacwoman2.apps.lab.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: pacwoman
+            port:
+              number: 80
+```
 
 
 ## Reference documentation
