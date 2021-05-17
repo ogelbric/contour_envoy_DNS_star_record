@@ -1,12 +1,12 @@
 # Using Contour and Envoy and a DNS Star record to point to one IP but have many services
 
-Create a custer
+## Create a custer
 ```
 [root@orfdns 7u2a]# k apply -f ./clusterparis.yaml 
 tanzukubernetescluster.run.tanzu.vmware.com/tkg-paris created
 ```
 
-Here is the yaml file
+## Here is the yaml file
 ```
 # clusterparis.yaml
 ---
@@ -47,5 +47,12 @@ spec:
       classes: ["pacific-gold-storage-policy"]
       defaultClass: pacific-gold-storage-policy
  ```
- 
+ ## Check on cluster
+ ```
+ [root@orfdns 7u2a]# k get tkc
+NAME         CONTROL PLANE   WORKER   DISTRIBUTION                      AGE     PHASE      TKR COMPATIBLE   UPDATES AVAILABLE
+tkg-berlin   1               2        v1.18.15+vmware.1-tkg.1.600e412   3d18h   running    True             [1.19.7+vmware.1-tkg.2.f52f85a 1.18.15+vmware.1-tkg.2.ebf6117]
+tkg-paris    1               2        v1.20.2+vmware.1-tkg.2.3e10706    3m56s   creating   True             
+[root@orfdns 7u2a]# 
+```
  
