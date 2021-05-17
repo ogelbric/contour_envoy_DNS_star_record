@@ -114,6 +114,39 @@ tkg-paris-control-plane-2hv5b              Ready    control-plane,master   15m  
 tkg-paris-workers-5z2vw-5ccdc7d4cb-594n5   Ready    <none>                 11m   v1.20.2+vmware.1
 tkg-paris-workers-5z2vw-5ccdc7d4cb-qzv8j   Ready    <none>                 11m   v1.20.2+vmware.1
 ```
+## Permissions
+```
+[root@orfdns ~]# k apply -f ./authorize-psp-for-gc-service-accounts.yaml  
+clusterrole.rbac.authorization.k8s.io/psp:privileged created
+clusterrolebinding.rbac.authorization.k8s.io/all:psp:privileged created
+[root@orfdns ~]# 
+[root@orfdns ~]# 
+[root@orfdns ~]# 
+[root@orfdns ~]# cat authorize-psp-for-gc-service-accounts.yaml  
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: psp:privileged
+rules:
+- apiGroups: ['policy']
+  resources: ['podsecuritypolicies']
+  verbs:     ['use']
+  resourceNames:
+  - vmware-system-privileged
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: all:psp:privileged
+roleRef:
+  kind: ClusterRole
+  name: psp:privileged
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: Group
+  name: system:serviceaccounts
+  apiGroup: rbac.authorization.k8s.io
+```
 
 ## Deploy
 ```
