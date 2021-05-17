@@ -264,6 +264,7 @@ tanzu-system-ingress   envoy                    LoadBalancer   198.51.100.151   
 [root@orfdns contour]# 
 ```
 
+![Version](https://github.com/ogelbric/7u2a/blob/main/vCenterVersion.png)
 
 
 
