@@ -294,6 +294,52 @@ spec:
 status:
 ```
 
+## Deploy the ingress services 
+```
+[root@orfdns envoy_contour]# k apply -f ./myapp-ingress-services.yaml
+service/pacman created
+ingress.networking.k8s.io/pacman created
+[root@orfdns envoy_contour]# cat myapp-ingress-services.yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: pacman
+  name: pacman
+  namespace: myapp
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    name: pacman
+  sessionAffinity: None
+  type: ClusterIP  # please note the type here from NodePort to ClusterIP and the different spec.ports.* section
+status:
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress # Orf, we introduce a an ingress Object now that helps us route things
+metadata:
+  name: pacman
+  namespace: myapp
+spec:
+  rules:
+  - host: pacman.apps.lab.local # for this example, this is *.apps.lab.local is my wildcard DNS entry that points to the VIP in the NSX-T LB i.e. 192.168.5.44
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: pacman
+            port:
+              number: 80	      
+```
+
+
+
 
 
 
