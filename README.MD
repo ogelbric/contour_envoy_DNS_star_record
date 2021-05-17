@@ -68,6 +68,15 @@ Download:  https://www.vmware.com/go/get-tkg
 [root@orfdns ~]#
 ```
 
+## unzip / untar
+```
+[root@orfdns ~]# cd envoy_contour/
+[root@orfdns envoy_contour]# gzip -d tkg-extensions-manifests-v1.3.1-vmware.1.tar.gz
+[root@orfdns envoy_contour]# tar xvf tkg-extensions-manifests-v1.3.1-vmware.1.tar
+[root@orfdns envoy_contour]# cd tkg-extensions-v1.3.1+vmware.1
+[root@orfdns tkg-extensions-v1.3.1+vmware.1]# 
+```
+
 
 
 
@@ -80,4 +89,7 @@ Download:  https://www.vmware.com/go/get-tkg
 ## Reference documentation
 ```
 Doc: https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-FA305850-ED37-48C6-99E9-5B6996376F0E.html
+Install TKG extensions pre-requs
+https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-36C7D7CB-312F-49B6-B542-1D0DBC550198.html
+
 ```
