@@ -245,6 +245,15 @@ contour-85b79dfff-jbj8k   0/1     ContainerCreating   0          8s
 contour-85b79dfff-vqrrr   0/1     ContainerCreating   0          7s
 envoy-d44kw               0/2     Init:0/1            0          8s
 envoy-lppjw               0/2     Init:0/1            0          8s
+
+....time...
+
+[root@orfdns contour]# k get pods -n tanzu-system-ingress
+NAME                      READY   STATUS    RESTARTS   AGE
+contour-85b79dfff-jbj8k   1/1     Running   0          97s
+contour-85b79dfff-vqrrr   1/1     Running   0          96s
+envoy-d44kw               2/2     Running   0          97s
+envoy-lppjw               2/2     Running   0          97s
 ```
 
 
