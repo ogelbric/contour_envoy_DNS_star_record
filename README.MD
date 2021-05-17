@@ -346,7 +346,37 @@ pacman   <none>   pacman.apps.lab.local   192.168.5.44   80      104s
 [root@orfdns envoy_contour]# 
 ```
 
-
+## Deploy a test app
+```
+[root@orfdns envoy_contour]# k apply -f ./myapp-app.yaml 
+deployment.apps/pacman created
+[root@orfdns envoy_contour]# cat myapp-app.yaml 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    name: pacman
+  name: pacman
+  namespace: myapp
+spec:
+  selector:
+    matchLabels:
+      name: pacman
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: pacman
+    spec:
+      containers:
+      - name: pacman
+        image: gcr.io/boreal-rain-256712/nginx
+        ports:
+        - containerPort: 80
+ ```
+ 
 
 
 
