@@ -448,7 +448,7 @@ spec:
                 values:
                 - linux
       containers:
-      - image: gcr.io/boreal-rain-256712/nginx
+      - image: gcr.io/boreal-rain-xxxxxx/nginx. #get ngix image from docker or create own repo
         imagePullPolicy: IfNotPresent
         name: pacwoman
         ports:
