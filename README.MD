@@ -338,6 +338,13 @@ spec:
               number: 80	      
 ```
 
+## Check in ingress
+```
+[root@orfdns envoy_contour]# k get ingress -n myapp
+NAME     CLASS    HOSTS                   ADDRESS        PORTS   AGE
+pacman   <none>   pacman.apps.lab.local   192.168.5.44   80      104s
+[root@orfdns envoy_contour]# 
+```
 
 
 
