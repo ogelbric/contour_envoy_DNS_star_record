@@ -1,5 +1,6 @@
 # Using Contour and Envoy and a DNS Star record to point to one IP but have many services
-
+  (Tested on NSX-T and NSX Advanced Loadbalancer (AVI) 7u2a)
+  
 ## Create a custer
 ```
 [root@orfdns 7u2a]# k apply -f ./clusterparis.yaml 
