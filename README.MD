@@ -522,3 +522,13 @@ https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-587
 https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-A1288362-61F7-46D9-AB42-1A5711AB4B57.html
  
 ```
+
+## Potentual air gapped solution
+```
+Upstream contour  
+That's just 2 containers. 
+If you do the yaml based upstream install you just download the contour yaml.
+Then pull the envoy proxy container and the project contour container to your local registry.   
+Then edit the YAML to point to your containers.
+https://projectcontour.io/quickstart/contour.yaml
+```
